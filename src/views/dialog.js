@@ -35,6 +35,7 @@ function($, Backbone, _, ui, template){
 		},
 
 		renderDialogHeader: function(){
+			$('.dialog-header', this.el).html(this.model.get('title'));
 		},
 
 		renderDialogBody: function(){
