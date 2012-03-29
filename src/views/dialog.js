@@ -9,6 +9,8 @@ function($, Backbone, _, ui, template){
 
 	var DialogView = Backbone.View.extend({
 
+		tagName: "div",
+
 		events: {
 		},
 
@@ -18,6 +20,11 @@ function($, Backbone, _, ui, template){
 			this.renderDialogBody();
 			this.renderDialogFooter();
 
+			$(this.el).addClass("dialog-container");
+
+			this.onZIndexChange();
+			this.onWidthChange();
+
 			this.model.on('change:zIndex', this.onZIndexChange, this);
 			this.model.on('change:width', this.onWidthChange, this);
 		},
@@ -26,7 +33,7 @@ function($, Backbone, _, ui, template){
 			var skeleton_html = _.template(template, {model: this.model.toJSON()});
 			$(this.el).html(skeleton_html);
 
-			$('.dialog-container', this.el).draggable({
+			$(this.el).draggable({
 				handle: '.dialog-header', 
 				cursor: 'move' 
 			});
@@ -49,23 +56,23 @@ function($, Backbone, _, ui, template){
 			if (opts.noReposition === undefined){opts.noReposition = false;}
 
 			if (! opts.noReposition){
-				$('.dialog-container', this.el).css("top", Math.round($(window).height() - $('.dialog-container', this.el).height()) / 2 + "px");
-				$('.dialog-container', this.el).css("left", Math.round($(window).width() - $('.dialog-container', this.el).width()) / 2 + "px");
+				$(this.el).css("top", Math.round($(window).height() - $(this.el).height()) / 2 + "px");
+				$(this.el).css("left", Math.round($(window).width() - $(this.el).width()) / 2 + "px");
 			}
 
-			$('.dialog-container', this.el).fadeIn();
+			$(this.el).fadeIn();
 		},
 
 		hide: function(){
-			$('.dialog-container', this.el).fadeOut();
+			$(this.el).fadeOut();
 		},
 
 		onZIndexChange: function(){
-			$('.dialog-container', this.el).css('zIndex', this.model.get('zIndex'));
+			$(this.el).css('zIndex', this.model.get('zIndex'));
 		},
 
 		onWidthChange: function(){
-			$('.dialog-container', this.el).css('width', this.model.get('width'));
+			$(this.el).css('width', this.model.get('width'));
 		},
 
 
