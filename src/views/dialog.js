@@ -37,6 +37,7 @@ function($, Backbone, _, ui, template){
 				handle: '.dialog-header', 
 				cursor: 'move' 
 			});
+			$(this.el).css('position', 'fixed');
 
 			return this;
 		},
