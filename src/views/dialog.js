@@ -33,11 +33,19 @@ function($, Backbone, _, ui, template){
 			var skeleton_html = _.template(template, {model: this.model.toJSON()});
 			$(this.el).html(skeleton_html);
 
-			$(this.el).draggable({
-				handle: '.dialog-header', 
-				cursor: 'move' 
-			});
-			$(this.el).css('position', 'fixed');
+			if (this.model.get('draggable')){
+				$(this.el).draggable({
+					handle: '.dialog-header', 
+					cursor: 'move' 
+				});
+				$(this.el).css('position', 'fixed');
+			}
+
+			if (this.model.get('resizable')){
+				$('.dialog-frame', this.el).resizable({
+					alsoResize: $('.dialog-body', this.el)
+				});
+			}
 
 			return this;
 		},

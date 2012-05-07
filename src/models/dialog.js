@@ -9,6 +9,8 @@ var DialogModel = Backbone.Model.extend({
 		title: '',
 		zIndex: 0,
 		width: 400,
+		draggable: true,
+		resizable: false
 	},
 
 	initialize: function(){
