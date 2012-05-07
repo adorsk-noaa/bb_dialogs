@@ -42,8 +42,11 @@ function($, Backbone, _, ui, template){
 			}
 
 			if (this.model.get('resizable')){
+				var _this = this;
 				$('.dialog-frame', this.el).resizable({
-					alsoResize: $('.dialog-body', this.el)
+					alsoResize: $('.dialog-body', this.el),
+					resize: function(){_this.onResize()},
+					stop: function(){_this.onResizeStop()}
 				});
 			}
 
@@ -83,6 +86,12 @@ function($, Backbone, _, ui, template){
 		onWidthChange: function(){
 			$(this.el).css('width', this.model.get('width'));
 		},
+
+		onResize: function(){
+		},
+
+		onResizeStop: function(){
+		}
 
 
 	});
