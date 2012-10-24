@@ -1,8 +1,8 @@
 define([
 	"jquery",
-	"use!backbone",
-	"use!underscore",
-	"use!ui",
+	"backbone",
+	"underscore",
+	"ui",
 	"./dialog",
 		],
 function($, Backbone, _, ui, DialogView){
